@@ -1,0 +1,57 @@
+# Ignorar Entorno Virtual de Python
+venv/
+.env
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Archivos de Dependencias
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Configuración de IDEs (VS Code, PyCharm, JetBrains)
+.vscode/
+.idea/
+*.iml
+
+# Logs y Archivos Temporales
+logs/
+*.log
+*.pid
+*.seed
+*.bak
+*.swp
+
+# Archivos del Sistema Operativo (Windows, macOS, Linux)
+.DS_Store
+Thumbs.db
+*.lnk
+*.tmp
+
+# Archivos de Node.js (si usas React en el frontend)
+node_modules/
+npm-debug.log*
+yarn-error.log
+.yarn/
+.pnp/
+.pnp.js
+
+# Archivos de MongoDB (Opcional, si usas dumps locales)
+dump/
+*.lock
+data/
+config/
+
+# Archivos de Docker (si decides dockerizar el proyecto)
+.dockerignore
+docker-compose.override.yml
+
+# Archivos de GitHub Actions (si hay secretos)
+.github/workflows/*.secrets
+
+# Archivos de Git (para evitar conflictos)
+*.orig
+
