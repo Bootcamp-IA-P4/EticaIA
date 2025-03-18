@@ -8,11 +8,11 @@ HEADERS = {"User-Agent": "Mozilla/5.0"}
 def get_articles():
     response = requests.get(URL, headers=HEADERS)
     
-    if response.status_code == 200;
+    if response.status_code == 200:
         soup = BeautifulSoup(response.text, "html.parser")
 
         # Obtenemos los artículos
-        articles = soup.find_all("h2")
+        articles = soup.find_all("h3")
 
         # Imprimimos los títulos
         return [article.text.strip() for article in articles]
