@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from mongodb_connection import collection
 
 # URL de MIT Tech Review
 URL = "https://www.technologyreview.com/"
@@ -14,17 +15,21 @@ def get_articles():
         # Obtenemos los artículos
         articles = soup.find_all("h3")
 
-        # Imprimimos los títulos
-        return [article.text.strip() for article in articles]
+        # Extraemos el título de cada artículo
+        extracted_data = [{"title": article.text.strip()} for article in articles]
+        return extracted_data
     
     else:
         print(f"Error {response.status_code}: No se pudo acceder a la página.")
         return []
 
+def save_to_mongo(data):
+    if data:
+        collection.insert_many(articles)
+        print("Artículos guardados en MongoDB.")
+
 # Ejecutar la función y mostrar los resultados
 if __name__ == "__main__":
-    extracted_articles = get_articles()
-    print("Artículos extraidos:")
-    for title in extracted_articles:
-        print("-", title)
+    articles = get_articles()
+    save_to_mongo(articles)
     
