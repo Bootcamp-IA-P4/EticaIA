@@ -24,3 +24,4 @@ async def add_article(article: Article):
         await collection.insert_one(article.model_dump())
         return {"message": "Artículo añadido"}
     
+    
