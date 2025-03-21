@@ -25,7 +25,7 @@ export default function ArticleDetail() {
   return (
     <div style={styles.container}>
       <h2>{article.title}</h2>
-      <p><strong>Publicado:</strong> {article.topic}</p>
+      <p><strong>Temática:</strong> {article.topic}</p>
       <a href={article.link} target="_blank" rel="noopener noreferrer">
         Ver artículo original
       </a>
