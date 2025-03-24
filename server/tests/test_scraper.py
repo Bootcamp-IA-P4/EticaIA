@@ -1,13 +1,17 @@
+import unittest
 from scraper import get_articles
 
-def test_scraper_returns_articles():
-    articles = get_articles()
-    assert isinstance(articles, list)
-    assert len(articles) > 0
+class TestScraper(unittest.TestCase):
+    def test_scraper_returns_articles(self):
+        articles = get_articles()
+        self.assertIsInstance(articles, list)
+        self.assertGreater(len(articles), 0)
 
-def test_article_structure():
-    article = get_articles()[0]
-    assert "title" in article and isinstance(article["title"], str)
-    assert "link" in article and article["link"].startswith("http")
-    assert "topic" in article
-    assert "excerpt" in article
+    def test_article_structure(self):
+        article = get_articles()[0]
+        self.assertIn("title", article)
+        self.assertIsInstance(article["title"], str)
+        self.assertIn("link", article)
+        self.assertTrue(article["link"].startswith("http"))
+        self.assertIn("topic", article)
+        self.assertIn("excerpt", article)
