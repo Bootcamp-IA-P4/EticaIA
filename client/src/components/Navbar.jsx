@@ -1,27 +1,14 @@
-import { Link } from 'react-router-dom';
-
-export default function Navbar() {
-  return (
-    <nav style={styles.navbar}>
-      <h1>EticaIA</h1>
-      <div>
-        <Link to="/" style={styles.link}>Inicio</Link>
-      </div>
-    </nav>
-  );
-}
-
-const styles = {
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '10px 20px',
-    backgroundColor: '#333',
-    color: 'white',
-  },
-  link: {
-    color: 'white',
-    textDecoration: 'none',
-    marginLeft: '10px',
-  },
-};
+export default function Navbar({ onSearch }) {
+    return (
+      <nav style={{ padding: '10px', background: '#333', color: '#fff' }}>
+        <h2>EticaIA</h2>
+        <input
+          type="text"
+          placeholder="Buscar artículo..."
+          onChange={(e) => onSearch(e.target.value)}
+          style={{ padding: '5px', marginLeft: '10px' }}
+        />
+      </nav>
+    );
+  }
+  
