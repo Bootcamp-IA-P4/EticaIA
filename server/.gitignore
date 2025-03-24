@@ -1,5 +1,6 @@
 # Ignorar Entorno Virtual de Python
 venv/
+.venv/
 .env
 *.pyc
 __pycache__/

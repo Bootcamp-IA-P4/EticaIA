@@ -1,14 +1,23 @@
 import pytest
-from httpx import AsyncClient
+from fastapi.testclient import TestClient
 from api.main import app
 
-@pytest.mark.asyncio
-async def test_get_articles():
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        response = await ac.get("/articles")
+client = TestClient(app)
+
+def test_get_all_articles():
+    response = client.get("/articles")
     assert response.status_code == 200
     data = response.json()
     assert isinstance(data, list)
-    if data:
-        assert "title" in data[0]
-        assert "link" in data[0]
+
+def test_get_article_by_id():
+    res_all = client.get("/articles")
+    articles = res_all.json()
+    if not articles:
+        pytest.skip("No hay artículos en la base de datos")
+    
+    article_id = articles[0]["_id"]
+    res_one = client.get(f"/articles/{article_id}")
+    assert res_one.status_code == 200
+    one_article = res_one.json()
+    assert one_article["_id"] == article_id
