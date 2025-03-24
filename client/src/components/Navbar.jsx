@@ -47,7 +47,7 @@ const styles = {
   },
   link: {
     textDecoration: 'none',
-    color: '#0077cc',
+    color: '#041dfb',
     fontWeight: 500,
   }
 };

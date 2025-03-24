@@ -12,9 +12,14 @@ export default function Home({ searchTerm }) {
       .catch((err) => console.error(err));
   }, []);
 
-  const filteredArticles = articles.filter((article) =>
-    article.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredArticles = articles.filter(article => {
+    const term = searchTerm.toLowerCase();
+    return (
+      article.title.toLowerCase().includes(term) ||
+      (article.excerpt && article.excerpt.toLowerCase().includes(term)) ||
+      (article.topic && article.topic.toLowerCase().includes(term))
+    );
+  });
 
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
