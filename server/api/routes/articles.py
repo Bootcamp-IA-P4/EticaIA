@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from api.database import collection
 from api.models import Article
 from bson import ObjectId
+from api.utils.serializers import article_serializer
 
 router = APIRouter()
 
@@ -9,7 +10,7 @@ router = APIRouter()
 @router.get("/")
 async def get_articles():
     articles = await collection.find().to_list(100)
-    return articles
+    return [article_serializer(article) for article in articles]
 
 # Ruta para crear o actualizar un artículo
 @router.post("/")
