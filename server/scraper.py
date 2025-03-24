@@ -1,10 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-from api.database import collection
+from api.database import get_collection
 import asyncio
 
 URL = "https://www.technologyreview.com/"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
+collection = get_collection()
 
 
 def get_articles():

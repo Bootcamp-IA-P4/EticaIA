@@ -1,10 +1,11 @@
 from fastapi import APIRouter, HTTPException
-from api.database import collection
+from api.database import get_collection 
 from api.models import Article
 from bson import ObjectId
 from api.utils.serializers import article_serializer
 
 router = APIRouter()
+collection = get_collection()
 
 # Ruta para obtener todos los artículos
 @router.get("/")
