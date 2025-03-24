@@ -24,21 +24,34 @@ export default function ArticleDetail() {
 
   return (
     <div style={styles.container}>
-      <h2>{article.title}</h2>
-      <p><strong>Temática:</strong> {article.topic}</p>
-      <a href={article.link} target="_blank" rel="noopener noreferrer">
-        Ver artículo original
-      </a>
-    </div>
-  );
+    <h2>{article.title}</h2>
+    <p><strong>Temática:</strong> {article.topic}</p>
+
+    {article.excerpt && (
+      <p style={styles.excerpt}>
+        {article.excerpt}
+      </p>
+    )}
+
+    <a href={article.link} target="_blank" rel="noopener noreferrer">
+      Ver artículo original
+    </a>
+  </div>
+);
 }
 
 const styles = {
-  container: {
-    padding: '20px',
-    backgroundColor: '#fefefe',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    marginTop: '20px',
-  }
+container: {
+  padding: '20px',
+  backgroundColor: '#fefefe',
+  border: '1px solid #ddd',
+  borderRadius: '8px',
+  marginTop: '20px',
+},
+excerpt: {
+  marginTop: '15px',
+  fontStyle: 'italic',
+  color: '#333',
+  lineHeight: 1.6,
+}
 };
