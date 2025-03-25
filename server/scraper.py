@@ -69,8 +69,12 @@ async def save_to_mongo(data):
     print(f"🗃️ Total guardados: {saved_count}, actualizados: {updated_count}")
 
 
-if __name__ == "__main__":
+def scrape_articles():
     articles = get_articles()
     print(f"📥 Artículos extraídos: {len(articles)}")
     asyncio.run(save_to_mongo(articles))
     print("🆗 Proceso completado.")
+
+
+if __name__ == "__main__":
+    scrape_articles()

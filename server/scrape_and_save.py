@@ -1,6 +1,4 @@
-# server/scrape_and_save.py
-
-from app.scraper import scrape_articles
+from scraper import scrape_articles
 from dotenv import load_dotenv
 import os
 
