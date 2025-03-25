@@ -1,119 +1,218 @@
-# 📌 Proyecto: EticaIA
+# 🧠 EticaIA – Transparencia ética en la inteligencia artificial
 
-## **🔍 Descripción del Proyecto**
-**EticaIA** es una plataforma interactiva que recopila y visualiza **casos éticos relacionados con la Inteligencia Artificial (IA)** a nivel global. A través de **web scraping**, extraemos información de fuentes confiables sobre problemáticas como **sesgos algorítmicos, privacidad, automatización del empleo, deepfakes y vigilancia masiva**, y las representamos en un **mapa interactivo** con filtros avanzados.
-
-Este proyecto tiene un enfoque **educativo y divulgativo**, ayudando a investigadores, periodistas, legisladores y ciudadanos a comprender el impacto real de la IA en nuestra sociedad.
+**EticaIA** es una plataforma de código abierto que permite visualizar, analizar y recopilar información sobre casos éticos relacionados con el desarrollo y uso de la inteligencia artificial. A través de un sistema de scraping automatizado, base de datos en la nube, API backend y una interfaz React moderna, se ofrece un **mapa interactivo** que facilita el acceso público y transparente a esta información.
 
 ---
 
-## **🎯 Objetivos del Proyecto**
-✅ **Scraping de Noticias Éticas sobre IA**
-- Extraer información de fuentes tecnológicas y medios de verificación como **MIT Tech Review, Wired, The Verge, Snopes y Maldita.es**.
-- Recopilar datos sobre **casos éticos de IA**, incluyendo **título, fecha, ubicación, categoría, descripción y fuente**.
-- Automatizar la extracción de datos mediante **GitHub Actions**.
+## 🌍 Objetivo del proyecto
 
-✅ **Base de Datos y API REST**
-- Almacenar la información en **MongoDB**, estructurada por categorías y geolocalización.
-- Desarrollar una **API en Flask o FastAPI** para exponer los datos al frontend.
-- Implementar **endpoints REST** como `/cases`, `/cases?category=sesgo`, `/cases/{id}`.
-
-✅ **Frontend Interactivo en React**
-- Desarrollar una interfaz visual con **React Vite**.
-- Implementar un **mapa interactivo** con **Google Maps API o OpenStreetMap**.
-- Integrar filtros por **categoría, fecha y ubicación**.
-- Incorporar gráficos con **Chart.js o D3.js** para visualizar tendencias.
-
-✅ **Automatización y Despliegue**
-- **GitHub Projects (`EticaIA-management`)** para la gestión ágil del desarrollo.
-- **GitHub Actions** para ejecutar el scraper periódicamente y desplegar la API y el frontend automáticamente.
-- **Docker** para contenerización del backend y la API.
-- **Railway/Render** para el despliegue de la API y la interfaz.
+Este proyecto nace del interés por fomentar el debate y la transparencia sobre los desafíos éticos que plantea la inteligencia artificial, recogiendo artículos reales sobre casos actuales, automatizando su recopilación y visualización, y permitiendo construir una base de conocimiento accesible para cualquier persona interesada.
 
 ---
 
-## **📅 Planificación del Desarrollo**
-| Fecha | Tareas |
-|--------|----------------------------------------------------------------|
-| **Lunes 17** | Configuración inicial: repo, GitHub Projects, tecnologías |
-| **Martes 18** | Desarrollo del scraper y conexión con MongoDB |
-| **Miércoles 19** | Refinamiento del scraping y automatización con GitHub Actions |
-| **Jueves 20** | Creación de la API con Flask/FastAPI |
-| **Viernes 21** | Desarrollo del frontend con React y mapa interactivo |
-| **Lunes 24** | Revisión final, documentación y despliegue |
-| **Martes 25** | Presentación del proyecto |
+## 🧩 Tecnologías utilizadas
+
+### 🔙 Backend
+
+- **Python 3.12**
+- **FastAPI** – Framework para crear la API REST.
+- **Motor + MongoDB** – Para gestionar la base de datos NoSQL.
+- **Unittest / Pytest** – Para la ejecución de pruebas automáticas.
+- **dotenv** – Para gestionar variables de entorno.
+
+### 🔮 Web Scraping
+
+- **Requests** – Para hacer peticiones HTTP.
+- **BeautifulSoup** – Para extraer contenido de páginas web.
+- **Scraper personalizado** – Recolecta datos de MIT Technology Review (ajustable).
+
+### 🧪 Testing
+
+- **Unittest (versión final)** – Adaptado para evitar errores de cierre del bucle de eventos.
+- **Tests por separado** – Ejecutados con un script que los lanza uno a uno para evitar colisiones asincrónicas.
+
+### 🗃️ Base de datos
+
+- **MongoDB local y test** (`eticaia_db`, `eticaia_db_test`) – Repositorios separados para entorno de producción y pruebas.
+
+### 🎨 Frontend
+
+- **React + Vite** – Aplicación SPA para visualizar los artículos en un mapa.
+- **Leaflet.js (previsto)** – Biblioteca de mapas interactivos.
 
 ---
 
-## **🛠 Tecnologías Utilizadas**
-### **Backend y Scraping**
-- Python
-- BeautifulSoup / Selenium
-- Flask / FastAPI
-- MongoDB
+## ⚙️ Pasos para iniciar el proyecto
 
-### **Frontend**
-- React Vite
-- Google Maps API / OpenStreetMap
-- Chart.js / D3.js
+### 1. Clonar el repositorio
 
-### **Infraestructura y DevOps**
-- GitHub Projects (gestión del proyecto)
-- GitHub Actions (automatización)
-- Docker (contenedorización)
-- Railway / Render (despliegue)
-
----
-
-## **📌 Instalación y Configuración**
-### **1️⃣ Clonar el Repositorio**
 ```bash
- git clone https://github.com/organizacion/EticaIA.git
- cd EticaIA
+git clone https://github.com/Bootcamp-IA-P4/EticaIA
+cd eticaia/server
 ```
 
-### **2️⃣ Configurar Entorno Virtual y Dependencias**
-```bash
-# Crear y activar entorno virtual
-python -m venv env
-source env/bin/activate  # Mac/Linux
-env\Scripts\activate  # Windows
+### 2. Crear entorno virtual
 
-# Instalar dependencias
+```bash
+python -m venv .venv
+source .venv/Scripts/activate  # en Windows
+# o
+source .venv/bin/activate  # en Linux/macOS
+```
+
+### 3. Instalar dependencias
+
+```bash
 pip install -r requirements.txt
 ```
 
-### **3️⃣ Ejecutar el Scraper**
-```bash
-python scraper.py
+### 4. Configurar variables de entorno
+
+Crea un archivo `.env` en la carpeta `server` con este contenido:
+
+```env
+MONGO_URI=mongodb://localhost:*****
+DB_NAME=nombre_de_tu_base_de_datos
+MONGO_DB_NAME_TEST=nombre_de_tu_base_de_datos_test
 ```
 
-### **4️⃣ Iniciar el Backend**
-```bash
-uvicorn app.main:app --reload
-```
+### 5.⚡ Arranque simultáneo del frontend y backend
 
-### **5️⃣ Iniciar el Frontend**
+El proyecto está configurado para levantar **tanto el frontend como el backend** con un solo comando:
+
 ```bash
-cd frontend
-npm install
+cd client
 npm run dev
 ```
 
----
+Esto lanzará automáticamente:
 
-## **📌 Contribución**
-🚀 Este es un proyecto **didáctico**, y estamos abiertos a contribuciones. Si deseas participar, puedes:
-1. **Abrir un Issue** con sugerencias o mejoras.
-2. **Hacer un Fork** del repositorio y enviar un Pull Request.
-3. **Comentar en GitHub Projects (`EticaIA-management`)** para discutir ideas.
+El frontend (React + Vite) en http://localhost:5173
 
----
+El backend (FastAPI) accesible desde http://localhost:8000
 
-## **📜 Licencia**
-📖 Este proyecto está bajo la licencia **MIT**.
+### 🧩 Arranque por separado
+
+Si prefieres iniciar los servidores manualmente y por separado, puedes hacerlo así:
 
 ---
 
-📢 **¡Gracias por tu interés en EticaIA!** Si tienes dudas, revisa la documentación y colabora con nosotros. 🚀
+### 🟠 Levantar solo el backend (FastAPI)
 
+Desde la carpeta `server`:
+
+```bash
+cd server
+uvicorn api.main:app --reload
+```
+
+Esto levantará el backend en: http://localhost:8000
+
+### 🔵 Levantar solo el frontend (React + Vite)
+
+Desde la carpeta client:
+
+```bash
+
+cd client
+npm run dev
+
+```
+
+Esto levantará el frontend en: http://localhost:5173
+
+La opción automática es útil durante el desarrollo, mientras que levantar los servicios por separado puede ser útil para debugging o despliegue independiente.
+
+### 6. Acceder a la documentación interactiva
+
+FastAPI genera automáticamente dos interfaces de documentación para la API:
+
+- **Swagger UI** (interactiva):  
+  [http://localhost:8000/docs](http://localhost:8000/docs)
+
+- **ReDoc** (documentación estructurada):  
+  [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+Puedes utilizar cualquiera de las dos para explorar los endpoints, ver los modelos y probar las peticiones directamente desde el navegador.
+
+---
+
+## 📈 Briefing del proyecto
+
+- **Nombre:** EticaIA
+- **Tipo:** Proyecto didáctico full stack
+- **Objetivo:** Automatizar la recogida y visualización de casos éticos sobre IA.
+- **Entorno:** Local (futuro despliegue en la nube)
+- **Repositorio Git:** GitHub con organización de ramas y tablero de planificación
+- **Metodología:** Git Flow + planificación en GitHub Projects
+
+---
+
+## 🔄 Funcionalidad del scraper
+
+El scraper accede a una fuente web (actualmente MIT Technology Review) y extrae:
+
+- Título del artículo
+- Extracto (si existe)
+- Fecha o antigüedad relativa
+- Enlace original
+
+Cada ejecución puede:
+
+- Añadir artículos nuevos
+- Actualizar artículos existentes
+- Guardarlos automáticamente en MongoDB
+
+---
+
+## 🧪 Funcionamiento de los tests
+
+Para evitar conflictos con el event loop de `asyncio`, los tests se ejecutan por separado mediante:
+
+```bash
+python tests/run_tests_separately.py
+```
+
+Este script lanza los siguientes archivos:
+
+- `test_api.py`: Comprueba que los endpoints devuelven correctamente los artículos.
+- `test_db_save.py`: Fuerza la inserción de un artículo y verifica que se guarda en MongoDB.
+- `test_scraper.py`: Verifica que el scraper devuelve artículos y con la estructura esperada.
+
+---
+
+## 🌿 Git Flow y ramas
+
+- `main` – Rama estable para producción
+- `dev` – Desarrollo general
+- `test-backend` – Ramas específicas para testing de backend
+- `feature/*` – Para cada nueva funcionalidad (`feature/scraper`, `feature/db-test`, etc.)
+
+---
+
+## 📋 Planificación en GitHub Projects
+
+Se utilizó un tablero tipo **Kanban** llamado **EticaIA-management** en GitHub Projects para:
+
+- Planificar tareas
+- Hacer seguimiento de features
+- Documentar bloqueos o mejoras futuras
+- Dividir el proyecto por áreas: Scraper, API, Tests, Base de datos, Frontend, DevOps
+
+---
+
+## 🚀 ¿Qué puedes aportar?
+
+Si te interesa colaborar en el proyecto, puedes:
+
+- Proponer nuevas fuentes de scraping
+- Sugerir mejoras visuales o de accesibilidad
+- Ayudar con la documentación o pruebas
+- Participar en la internacionalización del contenido
+
+---
+
+## 📬 Contacto
+
+¿Tienes alguna idea o comentario?  
+Abre un issue o contáctanos directamente vía GitHub.
